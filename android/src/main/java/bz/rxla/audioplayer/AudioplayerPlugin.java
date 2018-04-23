@@ -99,7 +99,12 @@ public class AudioplayerPlugin implements MethodCallHandler {
   private Boolean play(String url) {
     if (mediaPlayer == null) {
       mediaPlayer = new MediaPlayer();
-      mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+      if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        mediaPlayer.setAudioAttributes(new AudioAttributes.Builder().setUsage(
+            AudioAttributes.USAGE_MEDIA).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build());
+      } else {
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+      }
 
       try {
         mediaPlayer.setDataSource(url);
