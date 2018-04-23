@@ -1,6 +1,7 @@
 package bz.rxla.audioplayer;
 
 import android.app.Activity;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
